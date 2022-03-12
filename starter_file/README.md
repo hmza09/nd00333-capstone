@@ -1,8 +1,6 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
-
 # Udacity Capstone Project: Automl & HyperDrive Experiment
 
-The current project uses machine learning to predict patients’ survival based on their medical data. 
+The current project uses machine learning to predict patients’ survival based on their medical data.
 
 I create two models in the environment of Azure Machine Learning Studio: one using AutoML and one customized model whose hyperparameters are tuned using HyperDrive, then compare the performance of both models and deploy the best performing model as a service using Azure Container Instances (ACI).
 
@@ -171,14 +169,46 @@ policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
 - Register Model with RunID
 
 ![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/10-hyperdrive_register.PNG)
+
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
+The deployment is done following the steps below:
+
+- Preparation of an inference configuration
+- Preparation of an entry script
+- Choosing a compute target
+- Deployment of the model
+- Testing the resulting web service
+
+### Inference configuration
+
+The inference configuration defines the environment used to run the deployed model. The inference configuration includes two entities, which are used to run the model when it's deployed.
+
+
+### Entry script
+
+The entry script is the `scoring.py` file. The entry script loads the model when the deployed service starts and it is also responsible for receiving data, passing it to the model, and then returning a response.
+
+### Compute target
+
+As compute target, I chose the Azure Container Instances (ACI) service, which is used for low-scale CPU-based workloads that require less than 48 GB of RAM.
+
+The ACI Webservice Class represents a machine learning model deployed as a web service endpoint on Azure Container Instances. The deployed service is created from the model, script, and associated files, as I explain above. The resulting web service is a load-balanced, HTTP endpoint with a REST API. We can send data to this API and receive the prediction returned by the model.
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/11-model_deployment.PNG)
+
+- Serive State of Deployed Model
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/12-service_state.PNG)
+
+- Testing the resulting web service
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/13-endpoint.PNG)
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
+
+The screen recording can be found [here](https://youtu.be/x49lD69xBe0) and it shows the project in demonstration which include:
+
 - A working model
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
-
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
