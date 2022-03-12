@@ -18,6 +18,7 @@ Following scripts were used in this project:
 - `scoring_file_v_1_0_0.py`: the script used to deploy the model which is downloaded from within Azure Machine Learning Studio
 - `env.yml`: the environment file which is also downloaded from within Azure Machine Learning Studio
 
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/02-scripts.PNG)
 ## Dataset
 
 ### Overview
@@ -54,12 +55,76 @@ I  uploaded the data on azure ml studio, also it was available on my github repo
 ![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/01-dataset.PNG)
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+
+Below you can see an overview of the `automl` settings and configuration I used for the AutoML run:
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/03-automl_config.PNG)
+
+`"n_cross_validations": 2`
+
+This parameter sets how many cross validations to perform, based on the same number of folds (number of subsets). As one cross-validation could result in overfit, in my code I chose 2 folds for cross-validation; thus the metrics are calculated with the average of the 2 validation metrics.
+
+`"primary_metric": 'accuracy'`
+
+I chose accuracy as the primary metric as it is the default metric used for classification tasks.
+
+`"enable_early_stopping": True`
+
+It defines to enable early termination if the score is not improving in the short term. In this experiment, it could also be omitted because the _experiment_timeout_minutes_ is already defined below.
+
+`"max_concurrent_iterations": 4`
+
+It represents the maximum number of iterations that would be executed in parallel.
+
+`"experiment_timeout_minutes": 20`
+
+This is an exit criterion and is used to define how long, in minutes, the experiment should continue to run. To help avoid experiment time out failures, I used the value of 20 minutes.
+
+`"verbosity": logging.INFO`
+
+The verbosity level for writing to the log file.
+
+`compute_target = compute_target`
+
+The Azure Machine Learning compute target to run the Automated Machine Learning experiment on.
+
+`task = 'classification'`
+
+This defines the experiment type which in this case is classification. Other options are _regression_ and _forecasting_.
+
+`training_data = dataset`
+
+The training data to be used within the experiment. It should contain both training features and a label column - see next parameter.
+
+`label_column_name = 'DEATH_EVENT'` 
+
+The name of the label column i.e. the target column based on which the prediction is done.
+
+`path = project_folder`
+
+The full path to the Azure Machine Learning project folder.
+
+`featurization = 'auto'`
+
+This parameter defines whether featurization step should be done automatically as in this case (_auto_) or not (_off_).
+
+`debug_log = 'automl_errors.log`
+
+The log file to write debug information to.
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+- Model Run Widget
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/04-automl_runwidget.PNG)
+
+- Metrics
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/05-automl_metrics.PNG)
+
+- Best Performance Model
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/06-automl_model.PNG)
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
