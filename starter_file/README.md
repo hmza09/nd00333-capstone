@@ -163,10 +163,14 @@ policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
 ![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/08-hyperdrive_run.PNG)
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+- Model with different Hyperparameter tunning and Metrics
 
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/09-hyperdrive_model.PNG)
+
+- Register Model with RunID
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/10-hyperdrive_register.PNG)
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
