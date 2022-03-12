@@ -127,8 +127,39 @@ The log file to write debug information to.
 ![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/06-automl_model.PNG)
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
+**Parameter sampler**
+
+I specified the parameter sampler as such:
+
+```
+ps = RandomParameterSampling(
+    {
+        '--C' : choice(0.001,0.01,0.1,1,10,20,50,100,200,500,1000),
+        '--max_iter': choice(50,100,200,300)
+    }
+)
+```
+
+I chose discrete values with _choice_ for both parameters, _C_ and _max_iter_.
+
+_C_ is the Regularization while _max_iter_ is the maximum number of iterations.
+
+_RandomParameterSampling_ is one of the choices available for the sampler and I chose it because it is the faster and supports early termination of low-performance runs. If budget is not an issue, we could use _GridParameterSampling_ to exhaustively search over the search space or _BayesianParameterSampling_ to explore the hyperparameter space.
+
+**Early stopping policy**
+
+An early stopping policy is used to automatically terminate poorly performing runs thus improving computational efficiency. I chose the _BanditPolicy_ which I specified as follows:
+```
+policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
+
+- Two hyperparameters tunned in this model
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/07-hyperdrive_config.PNG)
+
+- Run Widget
+
+![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/08-hyperdrive_run.PNG)
 
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
