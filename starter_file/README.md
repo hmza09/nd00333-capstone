@@ -49,7 +49,9 @@ The task was to classify patients based on their odd of survival, the prediction
 ### Access
 
 I  uploaded the data on azure ml studio, also it was available on my github repository and provided the link in notebook.
-![](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/heart_failure_clinical_records_dataset.csv)
+![https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/heart_failure_clinical_records_dataset.csv](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/heart_failure_clinical_records_dataset.csv)
+
+[Dataset](https://github.com/hmza09/nd00333-capstone/blob/master/starter_file/screenshots/01-dataset.PNG)
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
