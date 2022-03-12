@@ -152,6 +152,7 @@ _RandomParameterSampling_ is one of the choices available for the sampler and I 
 An early stopping policy is used to automatically terminate poorly performing runs thus improving computational efficiency. I chose the _BanditPolicy_ which I specified as follows:
 ```
 policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
+```
 
 - Two hyperparameters tunned in this model
 
